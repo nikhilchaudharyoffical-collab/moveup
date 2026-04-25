@@ -4,7 +4,9 @@ generator client {
 }
 
 datasource db {
-  provider = "libsql"
+   provider = "turso"     // ← ye daalo
+  url      = env("DATABASE_URL")
+  authToken = env("TURSO_AUTH_TOKEN")
 }
 
 enum OrderStatus {
