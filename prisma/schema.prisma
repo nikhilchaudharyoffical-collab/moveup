@@ -1,0 +1,59 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+enum OrderStatus {
+  PENDING
+  PAID
+  EXPIRED
+  FAILED
+}
+
+model Book {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String
+  author      String
+  priceUsdt   Decimal
+  coverPath   String?
+  pdfPath     String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Order {
+  id                 String      @id @default(cuid())
+  nowpaymentsPaymentId String?    @unique
+  currency           String
+  amount             Decimal
+  status             OrderStatus @default(PENDING)
+  payAddress         String?
+  payAmount          Decimal?
+  createdAt          DateTime    @default(now())
+  updatedAt          DateTime    @updatedAt
+  paidAt             DateTime?
+
+  downloadToken      DownloadToken?
+
+  @@index([status, createdAt])
+  @@index([paidAt])
+}
+
+model DownloadToken {
+  id        String   @id @default(cuid())
+  token     String   @unique
+  orderId   String   @unique
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+  usedAt    DateTime?
+
+  order     Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+
+  @@index([expiresAt])
+}
+
