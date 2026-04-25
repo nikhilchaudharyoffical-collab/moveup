@@ -1,11 +1,12 @@
+import { connection } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { getOrCreateBook } from "@/lib/book";
 import { BookCard } from "@/components/BookCard";
 
-// ✅ Ye line add karo - bilkul top pe
 export const dynamic = 'force-dynamic'
 
 export default async function Home() {
+  await connection(); // Force dynamic rendering — skip prerender during build
   const book = await getOrCreateBook();
   const copiesSold = await prisma.order.count({ where: { status: "PAID" } });
 
