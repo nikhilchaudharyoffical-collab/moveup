@@ -4,9 +4,7 @@ generator client {
 }
 
 datasource db {
-   provider = "turso"
-  url      = env("DATABASE_URL")
-  authToken = env("TURSO_AUTH_TOKEN")
+  provider = "sqlite"
 }
 
 enum OrderStatus {
