@@ -4,7 +4,7 @@ const nextConfig: NextConfig = {
   images: {
     localPatterns: [
       {
-        pathname: '/api/assets/.*',
+        pathname: '/api/assets/(cover|pdf)',
       },
     ],
   },
