@@ -44,6 +44,8 @@ export type BookMinAggregateOutputType = {
   priceUsdt: runtime.Decimal | null
   coverPath: string | null
   pdfPath: string | null
+  coverData: runtime.Bytes | null
+  pdfData: runtime.Bytes | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -56,6 +58,8 @@ export type BookMaxAggregateOutputType = {
   priceUsdt: runtime.Decimal | null
   coverPath: string | null
   pdfPath: string | null
+  coverData: runtime.Bytes | null
+  pdfData: runtime.Bytes | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -68,6 +72,8 @@ export type BookCountAggregateOutputType = {
   priceUsdt: number
   coverPath: number
   pdfPath: number
+  coverData: number
+  pdfData: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -92,6 +98,8 @@ export type BookMinAggregateInputType = {
   priceUsdt?: true
   coverPath?: true
   pdfPath?: true
+  coverData?: true
+  pdfData?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -104,6 +112,8 @@ export type BookMaxAggregateInputType = {
   priceUsdt?: true
   coverPath?: true
   pdfPath?: true
+  coverData?: true
+  pdfData?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -116,6 +126,8 @@ export type BookCountAggregateInputType = {
   priceUsdt?: true
   coverPath?: true
   pdfPath?: true
+  coverData?: true
+  pdfData?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -215,6 +227,8 @@ export type BookGroupByOutputType = {
   priceUsdt: runtime.Decimal
   coverPath: string | null
   pdfPath: string | null
+  coverData: runtime.Bytes | null
+  pdfData: runtime.Bytes | null
   createdAt: Date
   updatedAt: Date
   _count: BookCountAggregateOutputType | null
@@ -250,6 +264,8 @@ export type BookWhereInput = {
   priceUsdt?: Prisma.DecimalFilter<"Book"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   coverPath?: Prisma.StringNullableFilter<"Book"> | string | null
   pdfPath?: Prisma.StringNullableFilter<"Book"> | string | null
+  coverData?: Prisma.BytesNullableFilter<"Book"> | runtime.Bytes | null
+  pdfData?: Prisma.BytesNullableFilter<"Book"> | runtime.Bytes | null
   createdAt?: Prisma.DateTimeFilter<"Book"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Book"> | Date | string
 }
@@ -262,6 +278,8 @@ export type BookOrderByWithRelationInput = {
   priceUsdt?: Prisma.SortOrder
   coverPath?: Prisma.SortOrderInput | Prisma.SortOrder
   pdfPath?: Prisma.SortOrderInput | Prisma.SortOrder
+  coverData?: Prisma.SortOrderInput | Prisma.SortOrder
+  pdfData?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -277,6 +295,8 @@ export type BookWhereUniqueInput = Prisma.AtLeast<{
   priceUsdt?: Prisma.DecimalFilter<"Book"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   coverPath?: Prisma.StringNullableFilter<"Book"> | string | null
   pdfPath?: Prisma.StringNullableFilter<"Book"> | string | null
+  coverData?: Prisma.BytesNullableFilter<"Book"> | runtime.Bytes | null
+  pdfData?: Prisma.BytesNullableFilter<"Book"> | runtime.Bytes | null
   createdAt?: Prisma.DateTimeFilter<"Book"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Book"> | Date | string
 }, "id">
@@ -289,6 +309,8 @@ export type BookOrderByWithAggregationInput = {
   priceUsdt?: Prisma.SortOrder
   coverPath?: Prisma.SortOrderInput | Prisma.SortOrder
   pdfPath?: Prisma.SortOrderInput | Prisma.SortOrder
+  coverData?: Prisma.SortOrderInput | Prisma.SortOrder
+  pdfData?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.BookCountOrderByAggregateInput
@@ -309,6 +331,8 @@ export type BookScalarWhereWithAggregatesInput = {
   priceUsdt?: Prisma.DecimalWithAggregatesFilter<"Book"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   coverPath?: Prisma.StringNullableWithAggregatesFilter<"Book"> | string | null
   pdfPath?: Prisma.StringNullableWithAggregatesFilter<"Book"> | string | null
+  coverData?: Prisma.BytesNullableWithAggregatesFilter<"Book"> | runtime.Bytes | null
+  pdfData?: Prisma.BytesNullableWithAggregatesFilter<"Book"> | runtime.Bytes | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Book"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Book"> | Date | string
 }
@@ -320,6 +344,8 @@ export type BookCreateInput = {
   priceUsdt: runtime.Decimal | runtime.DecimalJsLike | number | string
   coverPath?: string | null
   pdfPath?: string | null
+  coverData?: runtime.Bytes | null
+  pdfData?: runtime.Bytes | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -332,6 +358,8 @@ export type BookUncheckedCreateInput = {
   priceUsdt: runtime.Decimal | runtime.DecimalJsLike | number | string
   coverPath?: string | null
   pdfPath?: string | null
+  coverData?: runtime.Bytes | null
+  pdfData?: runtime.Bytes | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -343,6 +371,8 @@ export type BookUpdateInput = {
   priceUsdt?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   coverPath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   pdfPath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverData?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
+  pdfData?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -355,6 +385,8 @@ export type BookUncheckedUpdateInput = {
   priceUsdt?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   coverPath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   pdfPath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverData?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
+  pdfData?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -367,6 +399,8 @@ export type BookCreateManyInput = {
   priceUsdt: runtime.Decimal | runtime.DecimalJsLike | number | string
   coverPath?: string | null
   pdfPath?: string | null
+  coverData?: runtime.Bytes | null
+  pdfData?: runtime.Bytes | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -378,6 +412,8 @@ export type BookUpdateManyMutationInput = {
   priceUsdt?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   coverPath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   pdfPath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverData?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
+  pdfData?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -390,6 +426,8 @@ export type BookUncheckedUpdateManyInput = {
   priceUsdt?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   coverPath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   pdfPath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverData?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
+  pdfData?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -402,6 +440,8 @@ export type BookCountOrderByAggregateInput = {
   priceUsdt?: Prisma.SortOrder
   coverPath?: Prisma.SortOrder
   pdfPath?: Prisma.SortOrder
+  coverData?: Prisma.SortOrder
+  pdfData?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -419,6 +459,8 @@ export type BookMaxOrderByAggregateInput = {
   priceUsdt?: Prisma.SortOrder
   coverPath?: Prisma.SortOrder
   pdfPath?: Prisma.SortOrder
+  coverData?: Prisma.SortOrder
+  pdfData?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -431,6 +473,8 @@ export type BookMinOrderByAggregateInput = {
   priceUsdt?: Prisma.SortOrder
   coverPath?: Prisma.SortOrder
   pdfPath?: Prisma.SortOrder
+  coverData?: Prisma.SortOrder
+  pdfData?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -456,6 +500,10 @@ export type NullableStringFieldUpdateOperationsInput = {
   set?: string | null
 }
 
+export type NullableBytesFieldUpdateOperationsInput = {
+  set?: runtime.Bytes | null
+}
+
 export type DateTimeFieldUpdateOperationsInput = {
   set?: Date | string
 }
@@ -478,6 +526,8 @@ export type BookSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   priceUsdt?: boolean
   coverPath?: boolean
   pdfPath?: boolean
+  coverData?: boolean
+  pdfData?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["book"]>
@@ -490,6 +540,8 @@ export type BookSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   priceUsdt?: boolean
   coverPath?: boolean
   pdfPath?: boolean
+  coverData?: boolean
+  pdfData?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["book"]>
@@ -502,6 +554,8 @@ export type BookSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   priceUsdt?: boolean
   coverPath?: boolean
   pdfPath?: boolean
+  coverData?: boolean
+  pdfData?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["book"]>
@@ -514,11 +568,13 @@ export type BookSelectScalar = {
   priceUsdt?: boolean
   coverPath?: boolean
   pdfPath?: boolean
+  coverData?: boolean
+  pdfData?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type BookOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "description" | "author" | "priceUsdt" | "coverPath" | "pdfPath" | "createdAt" | "updatedAt", ExtArgs["result"]["book"]>
+export type BookOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "description" | "author" | "priceUsdt" | "coverPath" | "pdfPath" | "coverData" | "pdfData" | "createdAt" | "updatedAt", ExtArgs["result"]["book"]>
 
 export type $BookPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Book"
@@ -531,6 +587,8 @@ export type $BookPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     priceUsdt: runtime.Decimal
     coverPath: string | null
     pdfPath: string | null
+    coverData: runtime.Bytes | null
+    pdfData: runtime.Bytes | null
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["book"]>
@@ -963,6 +1021,8 @@ export interface BookFieldRefs {
   readonly priceUsdt: Prisma.FieldRef<"Book", 'Decimal'>
   readonly coverPath: Prisma.FieldRef<"Book", 'String'>
   readonly pdfPath: Prisma.FieldRef<"Book", 'String'>
+  readonly coverData: Prisma.FieldRef<"Book", 'Bytes'>
+  readonly pdfData: Prisma.FieldRef<"Book", 'Bytes'>
   readonly createdAt: Prisma.FieldRef<"Book", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Book", 'DateTime'>
 }

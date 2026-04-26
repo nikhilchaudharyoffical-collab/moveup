@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { requireAdmin } from "@/lib/requireAdmin";
 import { getOrCreateBook } from "@/lib/book";
 import { prisma } from "@/lib/prisma";
-import { saveUploadedFile } from "@/lib/uploads";
+import { processUpload } from "@/lib/uploads";
 
 export async function POST(req: Request) {
   const unauthorized = await requireAdmin();
@@ -20,13 +20,19 @@ export async function POST(req: Request) {
   }
 
   const book = await getOrCreateBook();
-  const saved = await saveUploadedFile(file, { prefix: kind });
+  const { buffer } = await processUpload(file);
 
   const updated = await prisma.book.update({
     where: { id: book.id },
-    data: kind === "cover" ? { coverPath: saved.publicPath } : { pdfPath: saved.publicPath },
+    data: kind === "cover" 
+      ? { coverData: buffer, coverPath: `/api/assets/cover?t=${Date.now()}` } 
+      : { pdfData: buffer, pdfPath: `/api/assets/pdf?t=${Date.now()}` },
   });
 
-  return NextResponse.json({ book: updated, uploaded: saved });
+  // Important: don't return the huge buffers in the response
+  return NextResponse.json({ 
+    book: { ...updated, coverData: null, pdfData: null }, 
+    success: true 
+  });
 }
 

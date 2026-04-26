@@ -672,6 +672,8 @@ export const BookScalarFieldEnum = {
   priceUsdt: 'priceUsdt',
   coverPath: 'coverPath',
   pdfPath: 'pdfPath',
+  coverData: 'coverData',
+  pdfData: 'pdfData',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -747,6 +749,13 @@ export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 
  * Reference to a field of type 'Decimal'
  */
 export type DecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal'>
+    
+
+
+/**
+ * Reference to a field of type 'Bytes'
+ */
+export type BytesFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Bytes'>
     
 
 

@@ -77,6 +77,8 @@ export const BookScalarFieldEnum = {
   priceUsdt: 'priceUsdt',
   coverPath: 'coverPath',
   pdfPath: 'pdfPath',
+  coverData: 'coverData',
+  pdfData: 'pdfData',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const

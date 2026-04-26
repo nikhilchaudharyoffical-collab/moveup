@@ -22,6 +22,8 @@ model Book {
   priceUsdt   Decimal
   coverPath   String?
   pdfPath     String?
+  coverData   Bytes?
+  pdfData     Bytes?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }

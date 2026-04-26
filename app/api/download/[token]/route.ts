@@ -1,5 +1,3 @@
-import path from "node:path";
-import { readFile } from "node:fs/promises";
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
@@ -16,19 +14,20 @@ export async function GET(_req: Request, ctx: { params: Promise<{ token: string 
   if (dl.expiresAt.getTime() < Date.now()) return NextResponse.json({ error: "Link expired" }, { status: 410 });
   if (dl.order.status !== "PAID") return NextResponse.json({ error: "Order not paid" }, { status: 403 });
 
-  const book = await prisma.book.findFirst();
-  if (!book?.pdfPath) return NextResponse.json({ error: "PDF not configured" }, { status: 500 });
-
-  const relativePdfPath = book.pdfPath.replace(/^\/+/, "");
-  const absolutePath = path.join(process.cwd(), "public", relativePdfPath);
-  const file = await readFile(absolutePath);
+  const book = await prisma.book.findFirst({
+    select: {
+      pdfData: true,
+      title: true,
+    }
+  });
+  if (!book?.pdfData) return NextResponse.json({ error: "PDF not configured" }, { status: 500 });
 
   await prisma.downloadToken.update({
     where: { id: dl.id },
     data: { usedAt: new Date() },
   });
 
-  return new NextResponse(file, {
+  return new NextResponse(book.pdfData, {
     headers: {
       "Content-Type": "application/pdf",
       "Content-Disposition": `attachment; filename="${(book.title ?? "ebook").replaceAll('"', "")}.pdf"`,
