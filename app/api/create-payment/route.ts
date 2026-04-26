@@ -28,7 +28,7 @@ export async function POST(req: Request) {
   const payment = await nowpaymentsCreatePayment({
     orderId: order.id,
     priceAmount: amount,
-    priceCurrency: currency.toLowerCase(),
+    priceCurrency: "usdt",
     payCurrency: currency,
     ipnCallbackUrl,
   });
