@@ -25,7 +25,7 @@ export async function GET(
 
   const contentType = kind === "cover" ? "image/jpeg" : "application/pdf";
 
-  return new NextResponse(data, {
+  return new NextResponse(Buffer.isBuffer(data) ? data : Buffer.from(data as unknown as ArrayLike<number>), {
     headers: {
       "Content-Type": contentType,
       "Cache-Control": "public, max-age=31536000, immutable",
