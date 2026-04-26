@@ -7,7 +7,7 @@ export async function GET() {
   const unauthorized = await requireAdmin();
   if (unauthorized) return unauthorized;
 
-  const book = await getOrCreateBook();
+  const book = await prisma.book.findFirst();
   return NextResponse.json({ book });
 }
 
@@ -28,6 +28,12 @@ export async function POST(req: Request) {
       author: body?.author ?? book.author,
       priceUsdt: body?.priceUsdt ?? Number(book.priceUsdt),
     },
+    // Exclude bytes from response
+    select: {
+      id: true, title: true, description: true, author: true, 
+      priceUsdt: true, coverPath: true, pdfPath: true,
+      createdAt: true, updatedAt: true
+    }
   });
 
   return NextResponse.json({ book: updated });
