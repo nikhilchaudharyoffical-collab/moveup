@@ -1,6 +1,5 @@
 import { PrismaClient } from "@/generated/prisma/client";
 import { PrismaLibSql } from "@prisma/adapter-libsql";
-import { createClient } from "@libsql/client";
 
 declare global {
   var prisma: PrismaClient | undefined;
@@ -13,15 +12,13 @@ if (!url && process.env.NODE_ENV === "production") {
   throw new Error("DATABASE_URL or TURSO_DATABASE_URL is not set in production");
 }
 
-const libsql = createClient({
-  url: url ?? "file:./dev.db",
-  authToken,
-});
-
 export const prisma =
   global.prisma ??
   new PrismaClient({
-    adapter: new PrismaLibSql(libsql),
+    adapter: new PrismaLibSql({
+      url: url ?? "file:./dev.db",
+      authToken,
+    }),
     log: process.env.NODE_ENV === "development" ? ["error", "warn"] : ["error"],
   });
 
