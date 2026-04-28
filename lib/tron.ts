@@ -46,7 +46,7 @@ export async function getTrc20UsdtBalance(addressBase58?: string) {
   if (!hex) return 0;
 
   const raw = BigInt(`0x${hex}`);
-  const balance = Number(raw) / 1_000_0; // USDT has 6 decimals
+  const balance = Number(raw) / 1_00; // USDT has 6 decimals
   return Number.isFinite(balance) ? balance : 0;
 }
 
