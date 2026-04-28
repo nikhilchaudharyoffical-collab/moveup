@@ -183,12 +183,22 @@ export function PaymentModal({ open, onClose }: { open: boolean; onClose: () => 
                         <div className="mb-2 text-xs font-medium text-white/60">Send to address</div>
                         <div className="break-all text-sm text-white">{address}</div>
                         <div className="mt-3 flex items-center gap-2 text-xs text-white/50">
-                          {payAmount ? (
-                            <>
-                              Amount: <span className="text-white">{payAmount}</span>
-                            </>
+                          { payAmount ? (
+                            <div className="mt-3 flex flex-col gap-1">
+                              <div className="flex items-center justify-between">
+                                <span className="text-white/50">Book Price</span>
+                                <span className="text-white font-medium">$15 USD</span>
+                              </div>
+                              <div className="flex items-center justify-between">
+                                <span className="text-white/50">You Pay</span>
+                                <span className="text-[#00ff88] font-bold">
+                                  {payAmount} USDT
+                                  <span className="text-white/40 text-xs ml-1">(TRC20)</span>
+                                </span>
+                              </div>
+                            </div>
                           ) : (
-                            "Amount shown in your invoice"
+                            "Generating amount..."
                           )}
                         </div>
                       </div>
